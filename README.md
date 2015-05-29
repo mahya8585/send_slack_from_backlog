@@ -7,6 +7,10 @@ how to use.
 - install Tornado and slackpy
     - pip install Tornado
     - pip install slackpy
+
+- backlogtoslack.py 内の設定部分を修正します
+    - Backlogドメイン
+    - SlackのincommingHookのURL(Slackの設定から取得してください)
   
 - srcディレクトリ配下をサーバに配置！
 - backlogtoslack.py を起動します

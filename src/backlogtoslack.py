@@ -22,14 +22,12 @@ class SendBacklogToSlackHandler(tornado.web.RequestHandler):
         """
         # 受け取ったjsonを辞書型に変換し、必要な項目を変数化します（辞書のままだと読みにくかったので
         json_dic = json.loads(self.request.body.decode('utf-8'))
-        project_key = json_dic["project"]["projectKey"]
+        project_key = json_dic["project"]["projectKey"] + "-" + str(json_dic["content"]["key_id"])
         project_name = json_dic["project"]["name"]
-        content_key_id = str(json_dic["content"]["key_id"])
         summary = json_dic["content"]["summary"]
         user_name = json_dic["createdUser"]["name"]
 
-        body_message = project_name + "<https://バックログドメイン/view/" + project_key + " | " + project_key + "-" \
-                      + content_key_id + " " + summary + "> by " + user_name
+        body_message = project_name + "<https://albert.backlog.jp/view/" + project_key + " | " + project_key + " " + summary + "> by " + user_name
         print(body_message)
 
         return body_message

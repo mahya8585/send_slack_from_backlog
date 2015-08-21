@@ -27,7 +27,8 @@ class SendBacklogToSlackHandler(tornado.web.RequestHandler):
         summary = json_dic["content"]["summary"]
         user_name = json_dic["createdUser"]["name"]
 
-        body_message = project_name + "<https://albert.backlog.jp/view/" + project_key + " | " + project_key + " " + summary + "> by " + user_name
+        # TODO backlogURL修正ください
+        body_message = project_name + "<https://xxxx.backlog.jp/view/" + project_key + " | " + project_key + " " + summary + "> by " + user_name
         print(body_message)
 
         return body_message
@@ -38,6 +39,7 @@ class SendBacklogToSlackHandler(tornado.web.RequestHandler):
         :param body_message:
         :return:
         """
+        # TODO SlackのincominghookのURLを指定してください。
         # incoming_url = "https://hooks.slack.com/services/T02xxxx/xxxx/xxxx/"
         incoming_url = "SlackのincominghookのURL"
         channel = "#" + self.get_argument("channel")
@@ -55,7 +57,7 @@ class SendBacklogToSlackHandler(tornado.web.RequestHandler):
         print(body_message)
 
         # ここでslackpyを呼び出すわけですよ。
-        SendBacklogToSlackHandler.send_slack(self,body_message)
+        SendBacklogToSlackHandler.send_slack(self, body_message)
 
         # test用(debug用)にreturnページを返却しておきます。
         self.render("template/result.html")
@@ -75,6 +77,7 @@ def main():
     app.listen(options.port)
 
     print(u"サーバを起動します。")
+    # TODO ポートは現在9行目で8888に設定していますが、変更可能です。使いやすいように以下コメントを修正ください
     print(u"http://サーバドメイン:" + str(options.port) + u"/backlog/slack?channel=送付先チャンネル にアクセスしてください")
     tornado.ioloop.IOLoop.instance().start()
 

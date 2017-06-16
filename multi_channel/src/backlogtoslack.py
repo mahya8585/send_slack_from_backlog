@@ -1,4 +1,3 @@
-__author__ = 'maaya_ishida'
 import tornado.ioloop
 import tornado.web
 import json
@@ -14,6 +13,17 @@ class SendBacklogToSlackHandler(tornado.web.RequestHandler):
     """
         backlogからSlackへのメッセージ通信を行います。
     """
+    # カテゴリ・チャネル対応表
+    category_channel = {
+        "IoT": "iot",
+        "BigData/AI": "bigdata-ai",
+        "Azure": "azure",
+        "AWS": "aws",
+        "DevOps": "devops",
+        "品質管理": "test-qa",
+        "戦略-マーケティング": "marketing",
+        "戦略-育成": "college"
+    }
 
     def create_message(self):
         """
@@ -39,10 +49,11 @@ class SendBacklogToSlackHandler(tornado.web.RequestHandler):
         :param body_message:
         :return:
         """
+        # TODO for文にしてカテゴリの数だけリクエストできるように作り直す
         # TODO SlackのincominghookのURLを指定してください。
         # incoming_url = "https://hooks.slack.com/services/T02xxxx/xxxx/xxxx/"
         incoming_url = "SlackのincominghookのURL"
-        channel = "#" + self.get_argument("channel")
+        channel = "#std-" + self.get_argument(SendBacklogToSlackHandler.category_channel["カテゴリを抽出して設定"])
         user_name = "BackLogKeeper"
         logging = slackpy.SlackLogger(incoming_url, channel, user_name)
 

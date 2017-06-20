@@ -24,7 +24,9 @@ send Slack message from backlog that using Tornado web framework
 
 ## カテゴリによるチャネル切り替え
 
-上記作業に加えて以下作業を実施してください
+Azure Functions Appで動くPythonコードです。   
+TODOと書かれている部分を修正してください。
+**現在チケットの新規登録にのみ対応しています**
 
-- categoryとchannelの対応表の修正
+**LibディレクトリをKuduから配置してください(Function名ディレクトリ直下)**
 

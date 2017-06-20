@@ -3,7 +3,8 @@ send Slack message from backlog that using Tornado web framework
 
 注意： Python3.4.3 の利用を想定して作っています。2系だと多分エラーになります。
 
-how to use.
+## 1チャネル版
+
 - install Tornado and slackpy
     - pip install Tornado
     - pip install slackpy
@@ -19,3 +20,13 @@ how to use.
         - ex) http://hogehoge.jp:8888/backlog/slack?channel=project-x
 
 自分用ツールなのでエラー処理とかまだ作ってません。。。
+
+
+## カテゴリによるチャネル切り替え
+
+Azure Functions Appで動くPythonコードです。   
+TODOと書かれている部分を修正してください。
+**現在チケットの新規登録にのみ対応しています**
+
+**LibディレクトリをKuduから配置してください(Function名ディレクトリ直下)**
+

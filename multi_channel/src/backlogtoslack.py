@@ -30,9 +30,10 @@ ticket_id = str(project_key + '-' + project_id)
 content = backlog_data['content']
 summary = str(content['summary'].encode('utf-8'))
 categories = content['category']
-assignee = content['assignee']['name'].encode('utf-8')
-if assignee is None:
+if content['assignee'] is None:
     assignee = '未設定'
+else:
+    assignee = content['assignee']['name'].encode('utf-8')
 
 for category in categories:
     category_name = category['name'].encode('utf-8')

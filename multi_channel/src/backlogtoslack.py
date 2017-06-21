@@ -23,13 +23,14 @@ print(backlog_data)
 
 project = backlog_data['project']
 project_key = project['projectKey']
-project_id = str(project['id'])
-
-ticket_id = str(project_key + '-' + project_id)
 
 content = backlog_data['content']
 summary = str(content['summary'].encode('utf-8'))
 categories = content['category']
+key_id = str(content['key_id'])
+
+ticket_id = str(project_key + '-' + key_id)
+
 if content['assignee'] is None:
     assignee = '未設定'
 else:

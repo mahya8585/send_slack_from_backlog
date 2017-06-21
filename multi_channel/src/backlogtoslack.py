@@ -30,7 +30,7 @@ ticket_id = str(project_key + '-' + project_id)
 content = backlog_data['content']
 summary = str(content['summary'].encode('utf-8'))
 categories = content['category']
-assignee = str(content['assignee']['name'].encode('utf-8'))
+assignee = content['assignee']['name'].encode('utf-8')
 if assignee is None:
     assignee = '未設定'
 

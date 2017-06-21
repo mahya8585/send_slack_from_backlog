@@ -31,10 +31,10 @@ key_id = str(content['key_id'])
 
 ticket_id = str(project_key + '-' + key_id)
 
-if content['assignee'] is None:
-    assignee = '未設定'
+if 'assignee' in content:
+    assignee = '-> assignee : ' + content['assignee']['name'].encode('utf-8')
 else:
-    assignee = content['assignee']['name'].encode('utf-8')
+    assignee = ''
 
 for category in categories:
     category_name = category['name'].encode('utf-8')
@@ -45,7 +45,7 @@ for category in categories:
         channel = channel + '-' + category_channel[category_name]
 
     # TODO 利用しているbacklogのドメインを指定してください
-    message = '<https://xxxxx.backlog.jp/view/' + ticket_id + ' | ' + ticket_id + ' ' + summary + '> -> assignee : ' + str(assignee)
+    message = '<https://xxxxx.backlog.jp/view/' + ticket_id + ' | ' + ticket_id + ' ' + summary + '> ' + str(assignee)
     post_body = {
         'text': message,
         'username': 'BackLogKeeper',

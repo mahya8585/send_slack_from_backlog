@@ -3,7 +3,7 @@ import os
 import json
 import platform
 import sys
-sys.path.append('Lib')
+sys.path.append('../Lib')
 import requests
 
 
@@ -22,10 +22,11 @@ key_id = str(content['key_id'])
 
 ticket_id = str(project_key + '-' + key_id)
 
+assignee = ''
 if 'assignee' in content:
-    assignee = '-> assignee : ' + content['assignee']['name'].encode('utf-8')
-else:
-    assignee = ''
+    assignee_info = content['assignee']
+    if assignee_info is not None:
+        assignee = '-> assignee : ' + assignee_info['name'].encode('utf-8')
 
 message = '<https://xxx.backlog.jp/view/' + ticket_id + ' | ' + ticket_id + ' ' + summary + '> ' + str(assignee)
 post_body = {
